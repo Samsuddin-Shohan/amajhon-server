@@ -4,7 +4,8 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 const res = require("express/lib/response");
 
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 6000;
+console.log(PORT);
 
 const app = express();
 app.use(express.json());
