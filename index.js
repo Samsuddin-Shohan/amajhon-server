@@ -20,6 +20,7 @@ async function run() {
     console.log('database connected');
     const database = client.db("online-store");
     const productsCollection = database.collection("products");
+    const reviewCollection = database.collection("review");
     //GET API
     console.log('hello');
     app.get("/products", async (req, res) => {
@@ -45,6 +46,18 @@ async function run() {
         products,
       });
     });
+    app.post("/review",async(req,res)=>{
+      const {name,img,description,profession,rating}=req.body;
+      const result = await reviewCollection.insertOne({
+        name,
+        img,
+        description,
+        profession,
+        rating
+      });
+      res.send(result);
+
+    })
   } finally {
     // await client.close();
   }
