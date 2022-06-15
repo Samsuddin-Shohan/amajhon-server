@@ -48,7 +48,7 @@ async function run() {
     });
     app.get("/review",async(req,res)=>{
       const cursors = await reviewCollection.find({});
-      const results = await reviewCollection.toArray();
+      const results = await cursors.toArray();
       res.json(results);
     })
     app.post("/review",async(req,res)=>{
