@@ -17,7 +17,7 @@ const client = new MongoClient(uri);
 async function run() {
   try {
     await client.connect();
-    console.log('database connected');
+    console.log('database connecteds');
     const database = client.db("online-store");
     const productsCollection = database.collection("products");
     const reviewCollection = database.collection("review");
@@ -46,6 +46,11 @@ async function run() {
         products,
       });
     });
+    app.get("/review",async(req,res)=>{
+      const cursors = await reviewCollection.find({});
+      const results = await reviewCollection.toArray();
+      res.json(results);
+    })
     app.post("/review",async(req,res)=>{
       const {name,img,description,profession,rating}=req.body;
       const result = await reviewCollection.insertOne({
