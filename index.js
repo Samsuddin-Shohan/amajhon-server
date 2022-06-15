@@ -20,6 +20,7 @@ async function run() {
     const database = client.db("online-store");
     const productsCollection = database.collection("products");
     //GET API
+    console.log('hello');
     app.get("/products", async (req, res) => {
       console.log(req.query);
       const page = parseInt(req.query.page);
